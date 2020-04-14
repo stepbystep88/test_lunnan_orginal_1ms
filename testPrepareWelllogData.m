@@ -14,10 +14,10 @@ basePath = 'E:\data\seismic data\lunan\';
 % 
 % timeLine = cell(1, 3);
 % timeLine{1} = upLine;
-centerLine = importdata('E:\data\seismic data\lunan\20200322log\zhongpingtai0322.txt');  
+centerLine = importdata('E:\data\seismic data\lunan\20200337\zhongpintai_t1_t2_t3_horizon.txt');  
 centerLine = centerLine.data;
-timeLine{1} = centerLine(:, [1,2,4]);
-timeLine{2} = centerLine(:, [1,2,3]);
+timeLine{1} = centerLine(:, [1,2,3]);
+timeLine{2} = centerLine(:, [1,2,4]);
 timeLine{3} = centerLine(:, [1,2,5]);
 % timeLine{3} = downLine;
 % save timeLine;
@@ -84,7 +84,7 @@ for i = 1 : nWell
         continue;
     end
     
-    time = bsGetHorizonTime(timeLine{1}, t.inline, t.crossline, 0);
+    time = bsGetHorizonTime(timeLine{2}, t.inline, t.crossline, 0);
     [~, index] = min(abs(wellData(:, 5) - time));
     t.targetDepth = wellData(index, 1);
     t.wellLog = wellData;

@@ -36,36 +36,36 @@ GInvParam.initModel.filtCoef = 0.12;
 GInvParam.initModel.mode = 'filter_from_true_log';
 
 % ³õÊ¼Ä£ÐÍ
-% GInvParam.initModel.mode = 'segy';
-GInvParam.initModel.vp.fileName = [basePath, 'modelwyj/Export_Strata_Model_as_Volume0324_P-wave.sgy'];
-GInvParam.initModel.vp.segyInfo = bsSetFields(GSegyInfo, {'t0', 3400; 'inlineId', 181; 'crosslineId', 185});
-GInvParam.initModel.vs.fileName = [basePath, 'modelwyj/Model0324_Vs.sgy'];
+GInvParam.initModel.mode = 'segy';
+GInvParam.initModel.vp.fileName = [basePath, 'modelwyj/Export_Strata_Model_as_Volume0330_P-wave.sgy'];
+GInvParam.initModel.vp.segyInfo = bsSetFields(GSegyInfo, {'t0', 3400; 'inlineId', 189; 'crosslineId', 193});
+GInvParam.initModel.vs.fileName = [basePath, 'modelwyj/math_0328model_s_wave.sgy'];
 GInvParam.initModel.vs.segyInfo = bsSetFields(GSegyInfo, {'t0', 3400; 'inlineId', 181; 'crosslineId', 185});
-GInvParam.initModel.rho.fileName = [basePath, 'modelwyj/Export_Strata_Model_as_Volume0324_Density.sgy'];
-GInvParam.initModel.rho.segyInfo = bsSetFields(GSegyInfo, {'t0', 3400; 'inlineId', 181; 'crosslineId', 185});
+GInvParam.initModel.rho.fileName = [basePath, 'modelwyj/Export_Strata_Model_as_Volume0330_Density.sgy'];
+GInvParam.initModel.rho.segyInfo = bsSetFields(GSegyInfo, {'t0', 3400; 'inlineId', 189; 'crosslineId', 193});
 % segy information of poststack file
-% GInvParam.postSeisData.segyInfo = GSegyInfo;
-% GInvParam.postSeisData.fileName = sprintf('%s/seismic/stack_radon_1ms.sgy', basePath);
+GInvParam.postSeisData.segyInfo = GSegyInfo;
+GInvParam.postSeisData.fileName = sprintf('%s/seismic/stack_org_1ms.sgy', basePath);
 
 
 % segy information of prestack file
 GInvParam.preSeisData.mode = 'offset_one_file';
 % GInvParam.preSeisData.fileName = 'E:\data\seismic data\lunan\lunan.prj\seismic.dir\radon_1ms.sgy';
-% GInvParam.preSeisData.fileName = 'E:\data\seismic data\lunan\seismic\trace_resample_1ms.sgy';
-GInvParam.preSeisData.fileName = [basePath, 'seismic/radon_1ms.sgy'];
+GInvParam.preSeisData.fileName = 'E:\data\seismic data\lunan\seismic\trace_resample_1ms.sgy';
+% GInvParam.preSeisData.fileName = [basePath, 'seismic/radon_1ms.sgy'];
 GInvParam.preSeisData.segyInfo = GSegyInfo;
 
 
 % some other information
 GInvParam.modelSavePath = [basePath, 'inversion_results/'];
 GInvParam.dt = 1;                           
-GInvParam.upNum = 40;    
-GInvParam.downNum = 100;    
+GInvParam.upNum = 80;    
+GInvParam.downNum = 70;    
 
 GInvParam.maxAngle = 40;
-GInvParam.angleTrNum = 5;
+GInvParam.angleTrNum = 7;
 GInvParam.oldSuperTrNum = 9;
-GInvParam.newSuperTrNum = 7;
+GInvParam.newSuperTrNum = 9;
 
 % GInvParam.bound.mode = 'based_on_init';
 GInvParam.bound.mode = 'off';
@@ -75,7 +75,7 @@ GInvParam.indexInWellData.vs = 3;
 GInvParam.indexInWellData.rho = 4;
 GInvParam.indexInWellData.time = 5;
 
-GInvParam.usedTimeLineId = 1;
+GInvParam.usedTimeLineId = 2;
 GInvParam.depth2time.expandNum = 200;
 GInvParam.depth2time.isShowCompare = 1;
 GInvParam.depth2time.showCompareNum = 20;
@@ -138,8 +138,8 @@ sampNum = GInvParam.upNum + GInvParam.downNum;
 
 %% set the options for training dictionary
 trainNum = 24;
-sizeAtom = 80;
-nAtom = 2000;
+sizeAtom = 90;
+nAtom = 2400;
 
 train_ids = randperm(length(wellLogs), trainNum);
 blind_ids = setdiff(1:length(wellLogs), train_ids);
